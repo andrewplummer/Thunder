@@ -1,0 +1,102 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#flash {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #fff;
+  pointer-events: none;
+}
+
+.hit#flash {
+  animation: flash linear 1s;
+}
+
+@keyframes flash {
+
+  0% {
+    opacity: .9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+.marker {
+  position: absolute;
+  text-align: center;
+  background: #fff;
+  border-radius: 100%;
+  font-size: 16px;
+  white-space: nowrap;
+  color: #fff;
+  transition: opacity linear 1s;
+}
+
+/* add a double stroke */
+.marker:after {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: .4em rgba(0,0,0,.95);
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.marker.hide {
+  opacity: 0;
+}
+
+
+/*----------------] Spinner [----------------*/
+
+.spinner {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin: -20px 0 0 -20px;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+body.loaded .spinner {
+  display: none;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
